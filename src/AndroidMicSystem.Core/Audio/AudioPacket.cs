@@ -33,4 +33,62 @@ public class AudioPacket
 
         return buffer;
     }
+       public static AudioPacket? FromBytes(byte[] buffer)
+    {
+        if (buffer.Length < HeaderSize)
+            return null;
+            
+        int offset = 0;
+        
+        var packet = new AudioPacket
+        {
+            Magic = ReadUInt32(buffer, ref offset),
+            SequenceNumber = ReadUInt32(buffer, ref offset),
+            Timestamp = ReadUInt32(buffer, ref offset),
+            SampleRate = ReadUInt16(buffer, ref offset),
+            Channels = buffer[offset++],
+            BitsPerSample = buffer[offset++]
+        };
+        
+        if (packet.Magic != MagicNumber)
+            return null;
+        
+        int audioDataLength = buffer.Length - HeaderSize;
+        if (audioDataLength > 0)
+        {
+            packet.AudioData = new byte[audioDataLength];
+            Array.Copy(buffer, HeaderSize, packet.AudioData, 0, audioDataLength);
+        }
+        
+        return packet;
+    }
+    
+    private static void WriteUInt32(byte[] buffer, ref int offset, uint value)
+    {
+        buffer[offset++] = (byte)(value & 0xFF);
+        buffer[offset++] = (byte)((value >> 8) & 0xFF);
+        buffer[offset++] = (byte)((value >> 16) & 0xFF);
+        buffer[offset++] = (byte)((value >> 24) & 0xFF);
+    }
+    
+    private static void WriteUInt16(byte[] buffer, ref int offset, ushort value)
+    {
+        buffer[offset++] = (byte)(value & 0xFF);
+        buffer[offset++] = (byte)((value >> 8) & 0xFF);
+    }
+    
+    private static uint ReadUInt32(byte[] buffer, ref int offset)
+    {
+        uint value = (uint)(buffer[offset++] |
+                           (buffer[offset++] << 8) |
+                           (buffer[offset++] << 16) |
+                           (buffer[offset++] << 24));
+        return value;
+    }
+    
+    private static ushort ReadUInt16(byte[] buffer, ref int offset)
+    {
+        ushort value = (ushort)(buffer[offset++] | (buffer[offset++] << 8));
+        return value;
+    }
 }
