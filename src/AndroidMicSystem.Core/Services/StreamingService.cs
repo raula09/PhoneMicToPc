@@ -184,6 +184,76 @@ public class StreamingService : IDisposable
             ConnectionState.PacketLossRate = _decoder.GetPacketLossRate();
         }
     }
+     
+    private void OnControlMessageReceived(NetworkProtocol.ControlMessage message)
+    {
+        switch (message.Type)
+        {
+            case NetworkProtocol.ControlMessageType.StartStream:
+                UpdateConnectionState(ConnectionStatus.Streaming, "Receiving audio stream...");
+                break;
+                
+            case NetworkProtocol.ControlMessageType.StopStream:
+                UpdateConnectionState(ConnectionStatus.Connected, "Stream stopped");
+                break;
+                
+            case NetworkProtocol.ControlMessageType.Ping:
+             
+                _controlChannel.SendMessageAsync(new NetworkProtocol.ControlMessage
+                {
+                    Type = NetworkProtocol.ControlMessageType.Pong
+                }).Wait();
+                break;
+        }
+    }
     
+    private void OnClientConnected()
+    {
+        UpdateConnectionState(ConnectionStatus.Connected, "Client connected");
+    }
+    
+    private void OnClientDisconnected()
+    {
+        UpdateConnectionState(ConnectionStatus.Disconnected, "Client disconnected");
+    }
+    
+    private void OnError(Exception ex)
+    {
+        Error?.Invoke(ex);
+    }
+    
+    private void UpdateConnectionState(ConnectionStatus status, string? message = null)
+    {
+        ConnectionState.Status = status;
+        
+        if (message != null)
+        {
+            if (status == ConnectionStatus.Error)
+                ConnectionState.ErrorMessage = message;
+        }
+        
+        if (status == ConnectionStatus.Connected && !ConnectionState.ConnectedAt.HasValue)
+        {
+            ConnectionState.ConnectedAt = DateTime.Now;
+        }
+        else if (status == ConnectionStatus.Disconnected)
+        {
+            ConnectionState.ConnectedAt = null;
+            ConnectionState.BytesSent = 0;
+            ConnectionState.BytesReceived = 0;
+            ConnectionState.PacketsSent = 0;
+            ConnectionState.PacketsReceived = 0;
+        }
+        
+        ConnectionStateChanged?.Invoke(ConnectionState);
+    }
+    
+    public void Dispose()
+    {
+        Disconnect();
+        _audioStreamer?.Dispose();
+        _controlChannel?.Dispose();
+        _discovery?.Dispose();
+    }
 
 }
