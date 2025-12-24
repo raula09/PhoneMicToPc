@@ -1,9 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <TargetFramework>net8.0-android</TargetFramework>
+        <OutputType>Exe</OutputType>
         <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ApplicationId>com.androidmicsystem.app</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <SupportedOSPlatformVersion>26</SupportedOSPlatformVersion>
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Android" Version="11.0.10" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AndroidMicSystem.Core\AndroidMicSystem.Core.csproj" />
+        <ProjectReference Include="..\AndroidMicSystem.Shared.UI\AndroidMicSystem.Shared.UI.csproj" />
+    </ItemGroup>
 
 </Project>

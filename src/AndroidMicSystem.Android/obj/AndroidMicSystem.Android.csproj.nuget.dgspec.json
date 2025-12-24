@@ -17,15 +17,22 @@
           "/home/Raul/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net8.0-android"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {}
+          "net8.0-android": {
+            "targetAlias": "net8.0-android",
+            "projectReferences": {
+              "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj": {
+                "projectPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj"
+              },
+              "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/AndroidMicSystem.Shared.UI.csproj": {
+                "projectPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/AndroidMicSystem.Shared.UI.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -41,8 +48,22 @@
         "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net8.0-android": {
+          "targetAlias": "net8.0-android",
+          "dependencies": {
+            "Avalonia.Android": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            },
+            "Avalonia.ReactiveUI": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            },
+            "Avalonia.Themes.Fluent": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -54,16 +75,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
