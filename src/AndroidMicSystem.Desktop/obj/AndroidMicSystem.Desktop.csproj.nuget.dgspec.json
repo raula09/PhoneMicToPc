@@ -4,6 +4,65 @@
     "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Desktop/AndroidMicSystem.Desktop.csproj": {}
   },
   "projects": {
+    "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj",
+        "projectName": "AndroidMicSystem.Core",
+        "projectPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj",
+        "packagesPath": "/home/Raul/.nuget/packages/",
+        "outputPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/Raul/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.20, 8.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Desktop/AndroidMicSystem.Desktop.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -28,9 +87,6 @@
             "projectReferences": {
               "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj": {
                 "projectPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj"
-              },
-              "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/AndroidMicSystem.Shared.UI.csproj": {
-                "projectPath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/AndroidMicSystem.Shared.UI.csproj"
               }
             }
           }
@@ -39,13 +95,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -63,13 +113,13 @@
               "target": "Package",
               "version": "[11.0.10, )"
             },
-            "Avalonia.ReactiveUI": {
-              "target": "Package",
-              "version": "[11.0.10, )"
-            },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
               "version": "[11.0.10, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.2, )"
             }
           },
           "imports": [
@@ -86,15 +136,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.20, 8.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -102,7 +144,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/Raul/.dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "1qjshKv1KVwl0a+buzoaHvYD0aEaOfQt68fEQ6kAxzeAarFGm/0gRwox1z7ZyUPvNtpwquSuRsfKDO4NGFV0aQ==",
+  "success": true,
+  "projectFilePath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/AndroidMicSystem.Shared.UI.csproj",
+  "expectedPackageFiles": [
+    "/home/Raul/.nuget/packages/avalonia/11.0.10/avalonia.11.0.10.nupkg.sha512",
+    "/home/Raul/.nuget/packages/avalonia.buildservices/0.0.29/avalonia.buildservices.0.0.29.nupkg.sha512",
+    "/home/Raul/.nuget/packages/avalonia.reactiveui/11.0.10/avalonia.reactiveui.11.0.10.nupkg.sha512",
+    "/home/Raul/.nuget/packages/avalonia.remote.protocol/11.0.10/avalonia.remote.protocol.11.0.10.nupkg.sha512",
+    "/home/Raul/.nuget/packages/avalonia.themes.fluent/11.0.10/avalonia.themes.fluent.11.0.10.nupkg.sha512",
+    "/home/Raul/.nuget/packages/dynamicdata/8.3.27/dynamicdata.8.3.27.nupkg.sha512",
+    "/home/Raul/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
+    "/home/Raul/.nuget/packages/reactiveui/19.5.31/reactiveui.19.5.31.nupkg.sha512",
+    "/home/Raul/.nuget/packages/splat/14.8.12/splat.14.8.12.nupkg.sha512",
+    "/home/Raul/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "/home/Raul/.nuget/packages/system.reactive/6.0.0/system.reactive.6.0.0.nupkg.sha512",
+    "/home/Raul/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
+    "/home/Raul/.nuget/packages/system.text.json/8.0.0/system.text.json.8.0.0.nupkg.sha512",
+    "/home/Raul/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}

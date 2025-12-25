@@ -4,10 +4,9 @@ using AndroidMicSystem.Core.Audio;
 
 namespace AndroidMicSystem.Core.Network;
 
-
 public class UdpAudioStreamer : IDisposable
 {
-    private readonly UdpClient _udpClient;
+    private UdpClient? _udpClient;
     private readonly int _port;
     private bool _isReceiving;
     private CancellationTokenSource? _receiveCts;
@@ -15,14 +14,11 @@ public class UdpAudioStreamer : IDisposable
     public event Action<AudioPacket>? PacketReceived;
     public event Action<Exception>? Error;
     
-    public UdpAudioStreamer(int port = NetworkProtocol.DefaultAudioPort)
+    public UdpAudioStreamer(int port = 5000)
     {
         _port = port;
-        _udpClient = new UdpClient();
-        _udpClient.Client.ReceiveBufferSize = 1024 * 1024; 
     }
     
-   
     public void StartReceiving()
     {
         if (_isReceiving)
@@ -33,7 +29,17 @@ public class UdpAudioStreamer : IDisposable
         
         try
         {
+            if (_udpClient != null)
+            {
+                try { _udpClient.Close(); } catch { }
+                try { _udpClient.Dispose(); } catch { }
+            }
+            
+            _udpClient = new UdpClient();
+            _udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            _udpClient.Client.ReceiveBufferSize = 1024 * 1024;
             _udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, _port));
+            
             Task.Run(() => ReceiveLoop(_receiveCts.Token));
         }
         catch (Exception ex)
@@ -43,39 +49,11 @@ public class UdpAudioStreamer : IDisposable
         }
     }
     
-  
     public void StopReceiving()
     {
         _isReceiving = false;
         _receiveCts?.Cancel();
-    }
-    
-  
-    public async Task SendPacketAsync(AudioPacket packet, IPEndPoint remoteEndpoint)
-    {
-        try
-        {
-            byte[] data = packet.ToBytes();
-            await _udpClient.SendAsync(data, data.Length, remoteEndpoint);
-        }
-        catch (Exception ex)
-        {
-            Error?.Invoke(ex);
-        }
-    }
-    
-    public async Task SendAudioAsync(byte[] audioData, AudioEncoder encoder, IPEndPoint remoteEndpoint)
-    {
-        try
-        {
-            uint timestamp = (uint)DateTime.Now.Ticks;
-            var packet = encoder.CreatePacket(audioData, timestamp);
-            await SendPacketAsync(packet, remoteEndpoint);
-        }
-        catch (Exception ex)
-        {
-            Error?.Invoke(ex);
-        }
+        Thread.Sleep(100); 
     }
     
     private async Task ReceiveLoop(CancellationToken cancellationToken)
@@ -84,6 +62,9 @@ public class UdpAudioStreamer : IDisposable
         {
             try
             {
+                if (_udpClient == null)
+                    break;
+                    
                 var result = await _udpClient.ReceiveAsync(cancellationToken);
                 var packet = AudioPacket.FromBytes(result.Buffer);
                 

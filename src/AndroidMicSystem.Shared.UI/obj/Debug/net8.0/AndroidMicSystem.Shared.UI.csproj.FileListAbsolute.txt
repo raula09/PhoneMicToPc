@@ -1,0 +1,8 @@
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.csproj.AssemblyReference.cache
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/Avalonia/resources
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.GeneratedMSBuildEditorConfig.editorconfig
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.AssemblyInfoInputs.cache
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.AssemblyInfo.cs
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.csproj.CoreCompileInputs.cache
+/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Shared.UI/obj/Debug/net8.0/AndroidMicSystem.Shared.UI.sourcelink.json

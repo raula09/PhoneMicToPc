@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AndroidMicSystem.Desktop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdb102e37710a9c6a007e0d64ee1204ee17264c0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c29a4b11b58746866305f5caee078011bb0b743a")]
 [assembly: System.Reflection.AssemblyProductAttribute("AndroidMicSystem.Desktop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AndroidMicSystem.Desktop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

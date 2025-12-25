@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wBDmEg7IlbVYMR8LsMybKXhNGfZOogQb/DXQ/+r7p2ylFZmxTkPpCQ63DbmNo00uxUd5HCPsINkEJWOPOEQTGA==",
+  "success": true,
+  "projectFilePath": "/home/Raul/AndroidMicSystem/src/AndroidMicSystem.Core/AndroidMicSystem.Core.csproj",
+  "expectedPackageFiles": [
+    "/home/Raul/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}

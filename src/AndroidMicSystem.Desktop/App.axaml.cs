@@ -1,8 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using AndroidMicSystem.Shared.UI.ViewModels;
-using AndroidMicSystem.Shared.UI.Views;
+using AndroidMicSystem.Desktop.ViewModels;
+using AndroidMicSystem.Desktop.Views;
 
 namespace AndroidMicSystem.Desktop;
 
@@ -19,7 +19,7 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel(),
+                DataContext = new MainViewModel()
             };
         }
 

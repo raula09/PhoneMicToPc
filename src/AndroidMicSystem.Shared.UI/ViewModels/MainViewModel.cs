@@ -8,7 +8,7 @@ using AndroidMicSystem.Core.Models;
 using AndroidMicSystem.Core.Services;
 using AndroidMicSystem.Desktop.AudioInjection;
 
-namespace AndroidMicSystem.Shared.UI.ViewModels;
+namespace AndroidMicSystem.Desktop.ViewModels;
 
 public class MainViewModel : ReactiveObject
 {
@@ -27,19 +27,19 @@ public class MainViewModel : ReactiveObject
         _audioInjector = new PipeWireAudioInjector();
         
         Devices = new ObservableCollection<DeviceInfo>();
-        
+         
         StartServerCommand = ReactiveCommand.CreateFromTask(StartServerAsync);
         StopServerCommand = ReactiveCommand.CreateFromTask(StopServerAsync);
         ConnectToDeviceCommand = ReactiveCommand.CreateFromTask(ConnectToDeviceAsync,
             this.WhenAnyValue(x => x.SelectedDeviceId, id => !string.IsNullOrEmpty(id)));
         DisconnectCommand = ReactiveCommand.CreateFromTask(DisconnectAsync);
         RefreshDevicesCommand = ReactiveCommand.Create(RefreshDevices);
-        
+         
         _streamingService.ConnectionStateChanged += OnConnectionStateChanged;
         _streamingService.AudioDataReceived += OnAudioDataReceived;
         _streamingService.Error += OnError;
     }
-    
+     
     public string StatusMessage
     {
         get => _statusMessage;
@@ -72,6 +72,7 @@ public class MainViewModel : ReactiveObject
     
     public ObservableCollection<DeviceInfo> Devices { get; }
     
+    // Commands
     public ReactiveCommand<Unit, Unit> StartServerCommand { get; }
     public ReactiveCommand<Unit, Unit> StopServerCommand { get; }
     public ReactiveCommand<Unit, Unit> ConnectToDeviceCommand { get; }
@@ -81,13 +82,14 @@ public class MainViewModel : ReactiveObject
     private async Task StartServerAsync()
     {
         try
-        {
+        { 
             await _audioInjector.InitializeAsync(48000, 1, 16);
             await _audioInjector.StartAsync();
-            
+             
             _streamingService.StartServer();
             
             StatusMessage = "Server started. Waiting for Android phone...";
+             
             _ = Task.Run(RefreshDevicesPeriodically);
         }
         catch (Exception ex)
@@ -175,7 +177,7 @@ public class MainViewModel : ReactiveObject
     {
         while (true)
         {
-            await Task.Delay(2000);
+            await Task.Delay(2000); 
             RefreshDevices();
         }
     }
@@ -198,9 +200,9 @@ public class MainViewModel : ReactiveObject
     }
     
     private async void OnAudioDataReceived(byte[] audioData)
-    {
+    { 
         await _audioInjector.WriteAudioAsync(audioData);
-        
+         
         AudioLevel = CalculateAudioLevel(audioData);
     }
     
@@ -213,7 +215,7 @@ public class MainViewModel : ReactiveObject
     {
         if (pcmData.Length < 2)
             return 0.0;
-            
+             
         long sum = 0;
         int sampleCount = pcmData.Length / 2;
         
@@ -224,9 +226,9 @@ public class MainViewModel : ReactiveObject
         }
         
         double rms = Math.Sqrt((double)sum / sampleCount);
-        double normalized = rms / 32768.0; 
+        double normalized = rms / 32768.0;  
         
-        return Math.Min(normalized * 100, 100);
+        return Math.Min(normalized * 100, 100); 
     }
     
     private string FormatBytes(long bytes)

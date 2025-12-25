@@ -1,0 +1,134 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AndroidMicSystem.Shared.UI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="500"
+        x:Class="AndroidMicSystem.Shared.UI.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Android Microphone System - Desktop"
+        Width="600" Height="500"
+        Icon="/Assets/avalonia-logo.ico">
+
+  <Design.DataContext>
+    <vm:MainViewModel/>
+  </Design.DataContext>
+
+  <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+     
+    <StackPanel Grid.Row="0" Spacing="10" Margin="0,0,0,20">
+      <TextBlock Text="Android Microphone System" 
+                 FontSize="24" 
+                 FontWeight="Bold"/>
+      <TextBlock Text="Turn your Android phone into a wireless microphone for Linux"
+                 FontSize="14"
+                 Foreground="Gray"/>
+    </StackPanel>
+ 
+    <ScrollViewer Grid.Row="1">
+      <StackPanel Spacing="20">
+         
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1" 
+                CornerRadius="8" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Status" 
+                       FontSize="16" 
+                       FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding StatusMessage}" 
+                       FontSize="14"
+                       TextWrapping="Wrap"/>
+             
+            <StackPanel Spacing="5" IsVisible="{Binding IsStreaming}">
+              <TextBlock Text="Audio Level" FontSize="12" Foreground="Gray"/>
+              <ProgressBar Value="{Binding AudioLevel}" 
+                          Maximum="100" 
+                          Height="20"
+                          Foreground="Green"/>
+            </StackPanel>
+             
+            <TextBlock Text="{Binding ConnectionInfo}"
+                       FontSize="12"
+                       Foreground="Gray"
+                       TextWrapping="Wrap"
+                       IsVisible="{Binding IsStreaming}"/>
+          </StackPanel>
+        </Border>
+ 
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1" 
+                CornerRadius="8" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Server Control" 
+                       FontSize="16" 
+                       FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal" Spacing="10">
+              <Button Content="Start Server" 
+                      Command="{Binding StartServerCommand}"
+                      Width="120"/>
+              <Button Content="Stop Server" 
+                      Command="{Binding StopServerCommand}"
+                      Width="120"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+ 
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1" 
+                CornerRadius="8" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+              <TextBlock Text="Discovered Devices" 
+                         FontSize="16" 
+                         FontWeight="SemiBold"
+                         VerticalAlignment="Center"/>
+              <Button Content="🔄" 
+                      Command="{Binding RefreshDevicesCommand}"
+                      ToolTip.Tip="Refresh devices"/>
+            </StackPanel>
+            
+            <ListBox ItemsSource="{Binding Devices}"
+                     SelectedItem="{Binding SelectedDeviceId}"
+                     Height="150">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <TextBlock Text="{Binding DeviceName}" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding IpAddress}" 
+                               FontSize="12" 
+                               Foreground="Gray"/>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <StackPanel Orientation="Horizontal" Spacing="10">
+              <Button Content="Connect" 
+                      Command="{Binding ConnectToDeviceCommand}"
+                      Width="120"/>
+              <Button Content="Disconnect" 
+                      Command="{Binding DisconnectCommand}"
+                      Width="120"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+      </StackPanel>
+    </ScrollViewer>
+ 
+    <Border Grid.Row="2" 
+            Background="WhiteSmoke" 
+            Padding="10" 
+            CornerRadius="4"
+            Margin="0,20,0,0">
+      <TextBlock Text="Make sure PipeWire is installed and pw-cat is available"
+                 FontSize="12"
+                 Foreground="Gray"
+                 TextAlignment="Center"/>
+    </Border>
+
+  </Grid>
+</Window>
